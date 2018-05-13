@@ -8,23 +8,43 @@
     "paths": {
         "/": {
             "get": {
+                "description": " Nice greeting endpoint ",
                 "operationId": "welcome",
                 "parameters": [
                     {
                         "name": "name",
-                        "in": "query"
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Greeting"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        },
-        "/test": {
-            "get": {
-                "operationId": "template_handler",
-                "parameters": [
-                    {
-                        "name": "name",
-                        "in": "query"
+        }
+    },
+    "components": {
+        "schemas": {
+            "Greeting": {
+                "type": "object",
+                "properties": {
+                    "msg": {
+                        "type": "string"
                     }
+                },
+                "required": [
+                    "msg"
                 ]
             }
         }

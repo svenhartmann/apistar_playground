@@ -1,12 +1,25 @@
-from apistar import App, http
+from apistar import App, http, types, validators
 
 
-def welcome(name=None) -> http.JSONResponse:
+class Name(types.Type):
+    """ A name """
+    name = validators.String()
+
+
+class Greeting(types.Type):
+    """ Greeting obj """
+    msg = validators.String()
+
+
+def welcome(name: Name) -> Greeting:
+    """ Nice greeting endpoint """
+
     if name is None:
-        response = {'message': 'Welcome to API Star!'}
-    response = {'message': 'Welcome to API Star, %s!' % name}
-    return http.JSONResponse(response, status_code=200)
+        response = 'Welcome to API Star!'
+    else:
+        response = 'Welcome to API Star, %s!' % name
+    return Greeting({'msg': response})
 
 
-def template_handler(app: App, name=None) -> http.HTMLResponse:
-    return http.Response(app.render_template('test.html', name=name))
+def template_handler(app: App, name: Name) -> http.HTMLResponse:
+    return http.HTMLResponse(app.render_template('test.html', name=name))
