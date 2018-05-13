@@ -3,7 +3,7 @@ from apistar import App, http, types, validators
 
 class Name(types.Type):
     """ A name """
-    name = validators.String()
+    pass
 
 
 class Greeting(types.Type):
@@ -11,7 +11,7 @@ class Greeting(types.Type):
     msg = validators.String()
 
 
-def welcome(name: Name) -> Greeting:
+def welcome(name: str=None) -> Greeting:
     """ Nice greeting endpoint """
 
     if name is None:
@@ -21,5 +21,5 @@ def welcome(name: Name) -> Greeting:
     return Greeting({'msg': response})
 
 
-def template_handler(app: App, name: Name) -> http.HTMLResponse:
+def template_handler(app: App, name: str=None) -> http.HTMLResponse:
     return http.HTMLResponse(app.render_template('test.html', name=name))
