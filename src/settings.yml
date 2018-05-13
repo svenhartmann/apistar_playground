@@ -1,0 +1,10 @@
+dynaconf:
+  server:
+    address: 127.0.0.1
+    port: 5000
+    debug: True
+  app:
+    schema_url: /schema
+  template:
+    dir: ./templates
+    static: ./templates/static

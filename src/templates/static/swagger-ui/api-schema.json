@@ -1,0 +1,32 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "",
+        "description": "",
+        "version": ""
+    },
+    "paths": {
+        "/": {
+            "get": {
+                "operationId": "welcome",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query"
+                    }
+                ]
+            }
+        },
+        "/test": {
+            "get": {
+                "operationId": "template_handler",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query"
+                    }
+                ]
+            }
+        }
+    }
+}
